@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Securing PaaS'
+    title: 'Securing PaaS - Model Answer'
 ---
 
 
