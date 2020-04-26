@@ -12,10 +12,12 @@ lab:
 - [Business continuity and disaster recovery whiteboard design session student guide](#business-continuity-and-disaster-recovery-whiteboard-design-session-student-guide)
   - [Abstract](#abstract)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+  
     - [Customer situation](#customer-situation)
     - [Customer needs](#customer-needs)
     - [Customer objections](#customer-objections)
     - [Infographic for common scenarios](#infographic-for-common-scenarios)
+    
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
   - [Step 3: Present the solution](#step-3-present-the-solution)
   - [Wrap-up](#wrap-up)
@@ -38,14 +40,6 @@ At the end of this WDS, you will be better able to design a solution that levera
 Analyze your customer's needs.
 
 Timeframe: 15 minutes
-
-Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
-
-1. Meet your table participants and trainer.
-
-2. Read all of the directions for steps 1-3 in the student guide.
-
-3. As a table team, review the following customer case study.
 
 ### Customer situation
 
@@ -107,7 +101,7 @@ Timeframe: 60 minutes
 
 **Business needs**
 
-Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
+Directions:  With all participants, answer the following questions and list the answers on a flip chart:
 
 1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
