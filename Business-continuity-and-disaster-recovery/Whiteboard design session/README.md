@@ -1,3 +1,27 @@
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+
+<div class="MCWHeader1">
+Business continuity and disaster recovery
+</div>
+
+<div class="MCWHeader2">
+Whiteboard design session student guide
+</div>
+
+<div class="MCWHeader3">
+March 2020
+</div>
+
+Information in this document, including URLs and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
+
+Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
+
+The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
+
+© 2020 Microsoft Corporation. All rights reserved.
+
+Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
+
 **Contents**
 
 <!-- TOC -->
@@ -80,15 +104,15 @@ CI has completed a cloud assessment of their applications and have classified th
 
 ### Infographic for common scenarios
 
-![Azure Site Recovery Scenarios apply to multiple on-premises and cloud-based replication infrastructures, including Hyper-V to Hyper-V, Hyper-V to Azure, VMWare or physical to VMWare, VMWare or Physical to Azure, and Azure to Azure.](https://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryhttps://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/media/image2.png "Azure Site Recovery Scenarios ")
+![Azure Site Recovery Scenarios apply to multiple on-premises and cloud-based replication infrastructures, including Hyper-V to Hyper-V, Hyper-V to Azure, VMWare or physical to VMWare, VMWare or Physical to Azure, and Azure to Azure.](images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryimages/media/image2.png "Azure Site Recovery Scenarios ")
 
-![Recovering Hyper-V VMs to Azure Architecture has the source as Hyper-V Hosts (Windows or Linux), an Azure Recovery Services agent, SCVMM with a Site Recovery DRA, Azure Site Recovery, and a Microsoft Azure cloud service. ](https://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryhttps://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/media/image3.png "Recover Hyper-V VMs to Azure Architecture")
+![Recovering Hyper-V VMs to Azure Architecture has the source as Hyper-V Hosts (Windows or Linux), an Azure Recovery Services agent, SCVMM with a Site Recovery DRA, Azure Site Recovery, and a Microsoft Azure cloud service. ](images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryimages/media/image3.png "Recover Hyper-V VMs to Azure Architecture")
 
-![In this environment, the Source Environment (East US) has a storage account with two disks and a storage account cache asr with cache data. These interact with a VNet environment made up of an availability set of two Azure Virtual Machines, and a subnet. Data flows from here through the Cache data, and to the Target Environment (Central US) Storage account ASR disks. In the Target Environment, the VNet-asr is empty.](https://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryhttps://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/media/image4.png "Azure Site Recovery Region to Region Failover")
+![In this environment, the Source Environment (East US) has a storage account with two disks and a storage account cache asr with cache data. These interact with a VNet environment made up of an availability set of two Azure Virtual Machines, and a subnet. Data flows from here through the Cache data, and to the Target Environment (Central US) Storage account ASR disks. In the Target Environment, the VNet-asr is empty.](images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryimages/media/image4.png "Azure Site Recovery Region to Region Failover")
 
-![Screenshot of the Azure Marketplace in the Azure Portal. Backup Exec 16 - Standard is called out.](https://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryhttps://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/media/image5.png "Azure Portal, Azure Marketplace")
+![Screenshot of the Azure Marketplace in the Azure Portal. Backup Exec 16 - Standard is called out.](images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryimages/media/image5.png "Azure Portal, Azure Marketplace")
 
-![The Native Azure Backup Option one has an on-premises solution of one SharePoint and one SQL virtual machine that use an Azure backup server. On-premises uses the internet to upload to Azure Backup, which then downloads for App/Item-level restore. Option two has a solution of one SharePoint and one SQL virtual machine that use either a Commvault Simpana or VCC for Enterprise machine. This solution uses the internet to upload to Azure Storage (blob), which then downloads for App/Item-level restore.](https://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryhttps://github.com/microsoft/MCW-Business-continuity-and-disaster-recovery/blob/master/Whiteboard%20design%20session/images/media/image6.png "Azure Backup and third-party back solutions")
+![The Native Azure Backup Option one has an on-premises solution of one SharePoint and one SQL virtual machine that use an Azure backup server. On-premises uses the internet to upload to Azure Backup, which then downloads for App/Item-level restore. Option two has a solution of one SharePoint and one SQL virtual machine that use either a Commvault Simpana or VCC for Enterprise machine. This solution uses the internet to upload to Azure Storage (blob), which then downloads for App/Item-level restore.](images/Whiteboarddesignsessiontrainerguide-Businesscontinuityanddisasterrecoveryimages/media/image6.png "Azure Backup and third-party back solutions")
 
 ## Step 2: Design a proof of concept solution
 
