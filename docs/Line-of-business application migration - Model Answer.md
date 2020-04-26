@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Business continuity and disaster recovery - Model Answer'
+    title: 'Line-of-business application migration - Model Answer'
 ---
 
 # Case Study - Line-of-business application migration - Model Answer
