@@ -3,7 +3,7 @@ lab:
     title: 'Business continuity and disaster recovery'
 ---
 
-#Case Study: Business continuity and disaster recovery
+# Case Study: Business continuity and disaster recovery
 
 **Contents**
 
