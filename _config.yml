@@ -1,1 +1,18 @@
-theme: jekyll-theme-slate
+title: 'go deploy - Azure Case Strudie'
+remote_theme: godeploy/Jekyll-Theme
+exclude:
+  - readme.md
+  - .github/
+header_pages:
+  - index.html
+author: go deploy - Online Labs
+twitter_username: godeployit
+github_username:  godeploy
+plugins:
+  - jekyll-sitemap
+  - jekyll-mentions
+  - jemoji
+markdown: kramdown
+kramdown:
+   syntax_highlighter_opts:
+      disable : true
