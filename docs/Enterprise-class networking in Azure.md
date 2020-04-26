@@ -29,9 +29,9 @@ lab:
 
 ## Abstract and learning objectives 
 
-In this whiteboard design session, you will look at the process of configuring an enterprise class network within Azure. Your design will include technologies to connect multiple virtual networks, as well as using capabilities such as routing to deploy network virtual appliances such as firewalls to secure your deployment. 
+In this Case Study, you will look at the process of configuring an enterprise class network within Azure. Your design will include technologies to connect multiple virtual networks, as well as using capabilities such as routing to deploy network virtual appliances such as firewalls to secure your deployment. 
 
-At the end of this whiteboard design session, you will be better able to design solutions using Azure Networking features and capabilities.
+At the end of this Case Study session, you will be better able to design solutions using Azure Networking features and capabilities.
 
 ## Step 1: Review the customer case study 
 

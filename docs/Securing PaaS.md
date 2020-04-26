@@ -27,9 +27,9 @@ lab:
 
 ## Abstract and learning objectives 
 
-In this Cast Study, you will work with a group to design an end-to-end PaaS solution that combines many of Azure's security features, while protecting sensitive data from both internal and external users.
+In this Case Study, you will work with a group to design an end-to-end PaaS solution that combines many of Azure's security features, while protecting sensitive data from both internal and external users.
 
-At the end of this design session, you will be better able to design secure PaaS-based solutions that protect your systems and data from both internal and external threats.
+At the end of this Case Study, you will be better able to design secure PaaS-based solutions that protect your systems and data from both internal and external threats.
 
 ## Step 1: Review the customer case study 
 
