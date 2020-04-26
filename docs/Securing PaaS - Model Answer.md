@@ -1,4 +1,3 @@
-
 ---
 lab:
     title: 'Securing PaaS - Model Answer'

@@ -3,7 +3,7 @@ lab:
     title: 'Securing PaaS'
 ---
 
-# Case Strudy - Securing PaaS
+# Case Study - Securing PaaS
 
 **Contents**
 
