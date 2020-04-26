@@ -1,3 +1,8 @@
+---
+lab:
+    title: 'Business continuity and disaster recovery - Model Answer'
+---
+
 ## Preferred solution
 
 *Provide an overview of the technologies and the implementation at a high-level. How will you use Azure's BCDR technologies to meet the Customer's needs?*
