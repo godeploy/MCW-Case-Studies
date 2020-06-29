@@ -39,16 +39,6 @@ At the end of this Case Study session, you will be better able to design solutio
 
 Analyze your customer's needs.
 
-Timeframe: 15 minutes
-
-Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
-
-1.  Meet your table participants and trainer.
-
-2.  Read all of the directions for steps 1-3 in the student guide.
-
-3.  As a table team, review the following customer case study.
-
 ###  Customer background
 
 Woodgrove Financial Services has been in business for over 75 years and is a well-known and respected name brand in the financial industry. They are historically risk-averse, and it has served them well, enabling them to weather several financial storms that closed the doors on similarly sized institutions. While Woodgrove started in the United States, around 20 years ago, they branched out into the international arena by acquiring a bank headquartered in Mexico City. Today, they have 224 branches in the United States and 64 in Mexico.
@@ -136,13 +126,11 @@ Woodgrove's pilot deployment of cloud-native applications will include:
 
 **Outcome**
 
-Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
-
-Timeframe: 60 minutes
+Design a solution and prepare to present the solution.
 
 **Business needs**
 
-Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
+Directions:  Answer the following questions:
 
 1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -150,7 +138,7 @@ Directions:  With all participants at your table, answer the following questions
 
 **Design**
 
-Directions: With all participants at your table, respond to the following questions on a flip chart.
+Directions: Respond to the following questions.
 
 The desired outcome is a network architecture that meets the needs of a modern financial services organization. This design will not have single points of failure and will include concepts such as a perimeter network with redundant firewalls protecting the internal subnets containing the application tiers. A simple network design will most likely confirm the director of Network Operation's beliefs that Azure cannot support real-world, enterprise-class networking (see customer objections)---*prove her wrong!*
 
@@ -174,47 +162,11 @@ The desired outcome is a network architecture that meets the needs of a modern f
 
 **Prepare**
 
-Directions: With all participants at your table:
-
 1.  Identify any customer needs that are not addressed with the proposed solution.
 
 2.  Identify the benefits of your solution.
 
 3.  Determine how you will respond to the customer's objections.
-
-Prepare a 15-minute chalk-talk style presentation to the customer.
-
-## Step 3: Present the solution
-
-**Outcome**
-
-Present a solution to the target customer audience in a 15-minute chalk-talk format.
-
-Timeframe: 30 minutes
-
-**Presentation**
-
-Directions:
-
-1.  Pair with another table.
-
-2.  One table is the Microsoft team and the other table is the customer.
-
-3.  The Microsoft team presents their proposed solution to the customer.
-
-4.  The customer makes one of the objections from the list of objections.
-
-5.  The Microsoft team responds to the objection.
-
-6.  The customer team gives feedback to the Microsoft team.
-
-7.  Tables switch roles and repeat Steps 2-6.
-
-##  Wrap-up 
-
-Timeframe: 15 minutes
-
-Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
 ##  Additional references
 

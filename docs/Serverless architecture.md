@@ -10,7 +10,8 @@ lab:
 
 <!-- TOC -->
 
-- [Serverless architecture whiteboard design session student guide](#serverless-architecture-whiteboard-design-session-student-guide)
+- [Case Study - Serverless architecture](#case-study---serverless-architecture)
+- [Serverless architecture Case Study](#serverless-architecture-case-study)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
     - [Customer situation](#customer-situation)
@@ -18,35 +19,23 @@ lab:
     - [Customer objections](#customer-objections)
     - [Infographic for common scenarios](#infographic-for-common-scenarios)
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#step-3-present-the-solution)
-  - [Wrap-up](#wrap-up)
   - [Additional references](#additional-references)
 
 <!-- /TOC -->
 
-# Serverless architecture whiteboard design session student guide
+# Serverless architecture Case Study
 
 ## Abstract and learning objectives
 
-In this whiteboard design session, you will work with a group to design a solution for processing vehicle photos as they are uploaded to a storage account, using serverless technologies on Azure. The license plate data needs to be extracted and stored in a highly available NoSQL data store for exporting. The data export process will be orchestrated by a serverless Azure component that coordinates exporting new license plate data to file storage and sending notifications as needed. You will also configure a Continuous Deployment process to automatically publish new changes to Function Apps. Finally, the entire processing pipeline will need to be monitored, with particular attention paid to components scaling to meet processing demand.
+In this Case Study, you will work with a group to design a solution for processing vehicle photos as they are uploaded to a storage account, using serverless technologies on Azure. The license plate data needs to be extracted and stored in a highly available NoSQL data store for exporting. The data export process will be orchestrated by a serverless Azure component that coordinates exporting new license plate data to file storage and sending notifications as needed. You will also configure a Continuous Deployment process to automatically publish new changes to Function Apps. Finally, the entire processing pipeline will need to be monitored, with particular attention paid to components scaling to meet processing demand.
 
-At the end of this whiteboard design session, you will have gained insight on how best to take advantage of the new serverless wave by designing a highly scalable and cost-effective solution that requires very little code and virtually no infrastructure, compared to traditional hosted web applications and services.
+At the end of this Case Study, you will have gained insight on how best to take advantage of the new serverless wave by designing a highly scalable and cost-effective solution that requires very little code and virtually no infrastructure, compared to traditional hosted web applications and services.
 
 ## Step 1: Review the customer case study
 
 **Outcome**
 
 Analyze your customer's needs.
-
-Timeframe: 15 minutes
-
-Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
-
-1. Meet your table participants and trainer.
-
-2. Read all of the directions for steps 1-3 in the student guide.
-
-3. As a table team, review the following customer case study.
 
 ### Customer situation
 
@@ -112,13 +101,11 @@ As a stretch goal, Contoso would like to know that the license processing pipeli
 
 **Outcome**
 
-Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
-
-Timeframe: 60 minutes
+Design a solution.
 
 **Business needs**
 
-Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
+Directions: Answer the following questions:
 
 1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -126,7 +113,7 @@ Directions: With all participants at your table, answer the following questions 
 
 **Design**
 
-Directions: With all participants at your table, respond to the following questions on a flip chart:
+Directions: Respond to the following questions:
 
 _High-level architecture_
 
@@ -169,50 +156,6 @@ _Monitoring and DevOps_
 2. How would you monitor all the executing serverless components in real time from a single dashboard?
 
 3. Does your monitoring solution support exploring historical telemetry and configuring alerts?
-
-**Prepare**
-
-Directions: With all participants at your table:
-
-1. Identify any customer needs that are not addressed with the proposed solution.
-
-2. Identify the benefits of your solution.
-
-3. Determine how you will respond to the customer's objections.
-
-Prepare a 15-minute chalk-talk style presentation to the customer.
-
-## Step 3: Present the solution
-
-**Outcome**
-
-Present a solution to the target customer audience in a 15-minute chalk-talk format.
-
-Timeframe: 30 minutes
-
-**Presentation**
-
-Directions:
-
-1. Pair with another table.
-
-2. One table is the Microsoft team and the other table is the customer.
-
-3. The Microsoft team presents their proposed solution to the customer.
-
-4. The customer makes one of the objections from the list of objections.
-
-5. The Microsoft team responds to the objection.
-
-6. The customer team gives feedback to the Microsoft team.
-
-7. Tables switch roles and repeat Steps 2-6.
-
-## Wrap-up
-
-Timeframe: 15 minutes
-
-Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
 ## Additional references
 
