@@ -5,14 +5,6 @@ lab:
 
 # Enterprise-class networking in Azure - Model Answer
 
-##  Preferred target audience
-
--   Director of Network Operations
-
--   Corporate Security Officer
-
--   Corporate Compliance Officer
-
 ## Preferred solution
 
 *High-level architecture*
