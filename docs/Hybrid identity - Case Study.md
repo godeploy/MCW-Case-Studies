@@ -1,3 +1,7 @@
+---
+lab:
+    title: 'Hybrid identity - Case Study'
+---
 
 # Hybrid identity - Case Study
 
