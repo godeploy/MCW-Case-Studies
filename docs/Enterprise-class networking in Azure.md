@@ -11,17 +11,17 @@ lab:
 <!-- TOC -->
 
 - [Enterprise-class networking in Azure whiteboard design session student guide](#enterprise-class-networking-in-azure-whiteboard-design-session-student-guide)
-    - [Abstract and learning objectives](#abstract-and-learning-objectives)
-    - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-        - [Customer background](#customer-background)
-        - [Customer situation](#customer-situation)
-        - [Customer needs](#customer-needs)
-        - [Customer objections](#customer-objections)
-        - [Infographic for common scenarios](#infographic-for-common-scenarios)
-    - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-    - [Step 3: Present the solution](#step-3-present-the-solution)
-    - [Wrap-up](#wrap-up)
-    - [Additional references](#additional-references)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer background](#customer-background)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
 
 <!-- /TOC -->
 
@@ -29,15 +29,17 @@ lab:
 
 ## Abstract and learning objectives 
 
-In this Case Study, you will look at the process of configuring an enterprise class network within Azure. Your design will include technologies to connect multiple virtual networks, as well as using capabilities such as routing to deploy network virtual appliances such as firewalls to secure your deployment. 
+In this case study, you will look at the process of configuring an enterprise class network within Azure. Your design will include technologies to connect multiple virtual networks, as well as using capabilities such as routing to deploy network virtual appliances such as firewalls to secure your deployment. 
 
-At the end of this Case Study session, you will be better able to design solutions using Azure Networking features and capabilities.
+At the end of this case study, you will be better able to design solutions using Azure Networking features and capabilities.
 
 ## Step 1: Review the customer case study 
 
 **Outcome**
 
 Analyze your customer's needs.
+
+Timeframe: 15 minutes
 
 ###  Customer background
 
@@ -53,7 +55,7 @@ Ten years ago, Woodgrove went through a major upgrade of their Ethernet core and
 
 There is also a datacenter in Mexico, located in Mexico City. The Mexico datacenter has an MPLS connection to the Chicago datacenter with 200 Mbps bandwidth and a Site-to-Site VPN connection for redundancy that is 100 Mbps. All 64 of the Mexico-based branches have Site-to-Site VPN connections to this datacenter and the internet bandwidth for all branches was standardized recently at 50 Mbps up/down.
 
-![The diagram of Woodgrove's current scenario has a cloud at the top, city locations below the cloud, and branches and one headquarters below the cities. Two of the cities - Plano Texas and Chicago Illinois - connect to the cloud with 500 Mbps connections. Mexico City Mexico, the third city, connect with a 100 Mbps connection. Plano and Chicago connect to each other wisth 5 Gbps connections, while Chicago and Mexico connect with a 200 Mbps, and 100 Mbps connections. Mexico City has three branch offices with 50 Mbps connections, while Plano and Chicago share four branch offices and headquarters. Connections between Chicago / Plano and the branches vary between 100 Mbps and 200 Mbps. The connection with headquarters is 200Mbps.](images/Whiteboarddesignsessionstudentguide-Enterprise-classnetworkinginAzureimages/media/image2.png "Woodgrove current scenario diagram")
+![image](https://user-images.githubusercontent.com/25365143/136539845-357726fb-f274-40fb-8b12-ded63ebaa8c0.png)
 
 Figure 1 - Woodgrove current network configuration
 
@@ -120,17 +122,19 @@ Woodgrove's pilot deployment of cloud-native applications will include:
 
 ### Infographic for common scenarios
 
-![Infographic that depicts several Azure infrastructure technologies including virtual machines, virtual networks, site-to-site VPN, and ExpressRoute ](images/Whiteboarddesignsessionstudentguide-Enterprise-classnetworkinginAzureimages/media/image3.jpeg "Infographic for common scenarios")
+![image](https://user-images.githubusercontent.com/25365143/136539876-2fd6a08f-5c53-4579-9e6e-0ce4b15c6953.png)
 
 ## Step 2: Design a proof of concept solution
 
 **Outcome**
 
-Design a solution and prepare to present the solution.
+Design a solution.
+
+Timeframe: 60 minutes
 
 **Business needs**
 
-Directions:  Answer the following questions:
+Directions:  Answer the following questions and list the answers
 
 1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -162,6 +166,8 @@ The desired outcome is a network architecture that meets the needs of a modern f
 
 **Prepare**
 
+Directions:
+
 1.  Identify any customer needs that are not addressed with the proposed solution.
 
 2.  Identify the benefits of your solution.
@@ -179,6 +185,7 @@ The desired outcome is a network architecture that meets the needs of a modern f
 | ExpressRoute Routing requirements                         | <https://azure.microsoft.com/en-us/documentation/articles/expressroute-routing/>                  |
 | ExpressRoute NAT requirements                             | <https://azure.microsoft.com/en-us/documentation/articles/expressroute-nat/>                      |
 | ExpressRoute workflows                                    | <https://azure.microsoft.com/en-us/documentation/articles/expressroute-workflows/>                |
+| ExpressRoute Global Reach                                 | https://docs.microsoft.com/en-us/azure/expressroute/expressroute-global-reach                     |
 | Site-to-Site VPN documentation                            | <https://azure.microsoft.com/en-us/documentation/services/vpn-gateway/>                           |
 | Virtual Network documentation                             | <https://azure.microsoft.com/en-us/documentation/services/virtual-network/>                       |
 | Network Security Group documentation                      | <https://azure.microsoft.com/en-us/documentation/articles/virtual-networks-nsg/>                  |
@@ -188,3 +195,4 @@ The desired outcome is a network architecture that meets the needs of a modern f
 | Deploy highly available network virtual appliances        | https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/dmz/nva-ha            |
 | Azure Firewall Documentation                              | https://docs.microsoft.com/en-us/azure/firewall/                                                  |
 | Virtual Network Service Endpoints                         | https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview |
+| Azure Bastion                                             | https://docs.microsoft.com/en-us/azure/bastion/bastion-overview                                   |
