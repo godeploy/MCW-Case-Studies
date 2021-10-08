@@ -1,3 +1,7 @@
+---
+lab:
+    title: 'Hybrid identity - Model Answer'
+---
 
 # Hybrid identity - Model Answer
 
