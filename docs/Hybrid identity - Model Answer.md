@@ -1,7 +1,3 @@
-﻿---
-lab:
-    title: 'Hybrid identity - Model Answer'
---- 
 
 # Hybrid identity - Model Answer
 
@@ -29,7 +25,7 @@ lab:
 
 10.  Commercial applications developed by Contoso programmers must be made available to external customers with minimum overhead associated with identity management.
 
-11.  Resiliency must be maximized whenever possible.
+11.  Resiliency must be maximized whenever possible.  Users must not lose authentication capabilities or the ability to access on-premises applications.
 
 12.  Infrastructure requirements must be minimized
 
@@ -98,13 +94,13 @@ lab:
 
            - Self-service password reset/change/unlock with on-premises writeback (available starting with Azure AD Premium P1). 
 
-     ![High level architecture consisting of the on-premises environment represented by a rectangle on the left hand side, two cloud outlines representing the Azure AD tenant of Contoso and Fabrikam on the right hand side, and the Microsoft Intune icon in the middle. The on-premises environment contains an icons representing Active Directory domain controllers, providing such functionality as Azure AD Connect-based synchronization with attribute level filtering and password writeback, Azure AD Application Proxy with its on-premises connector, Service Connection Point for Hybrid Azure AD join, and Passowrd Protection DC Agent. There is also a web server icon, representing the hybrid Azure AD joined server hosting the APP1 application, used also as the Password Application Proxy. The Contoso Azure AD tenant provides such functionality as Azure AD application proxy, My Apps portal, Automatic Intune enrollment, Enterprise State Roaming, Conditional Access, Azure AD Identity Protection, Azure AD Privileged Identity Management, Azure AD MFA, and Self-Service Password Reset.](images/Whiteboarddesignsessiontrainerguide-HybridIdentityimages/media/preferred-solution-high-level.png)
+     ![image](https://user-images.githubusercontent.com/25365143/136541071-380eca05-a609-438d-8216-fd273058f0ec.png)
 
     The choice of authentication method: 
 
       - In order to minimize infrastructure footprint required for integration, streamline user experience, and, at the same time, ensure that any on-premises Active Directory user account restrictions, such as allowed sign-in hours must be honored, the proposed solution leverages pass-through authentication with seamless single sign-on (SSO). 
 
-     ![The diagram illustrating Azure AD Hybrid Identity with Pass-through authentication. On the left hand side, there is a cloud shape representing Public Cloud SaaS services, including Azure and Office 365, The user and the user's computer icons are positioned directly underneath. The user signs in to Azure AD represented by a circle containing the Azure AD symbol. On the right-hand side of the slide, there are several icons within the area of the image labeled On-premises.. These icons represent an Active Directory domain controller and Azure AD Connect server that collectively perform identity sync. The domain controller also interacts with Authentication Agents that handle pass-through authentication.](images/Whiteboarddesignsessiontrainerguide-HybridIdentityimages/media/azure-ad-authn-image3.png)
+     ![image](https://user-images.githubusercontent.com/25365143/136541083-e132149a-bffc-4809-9e92-8ff4f2d42ff1.png)
 
       - The need for preserving on-premises Active Directory user account restrictions eliminates the possibility of relying exclusively on Azure AD password hash synchronization, even though this is the simplest way to enable authentication for on-premises directory objects in Azure AD (which also supports seamless SSO), with minimum infrastructure requirements. It is worth noting that the password hash synchronization also does not include expired and locked-out states of Active Directory user accounts.
 
@@ -312,7 +308,13 @@ It is important to provision sufficient number of connectors to handle the expec
 
               **Note**:  Azure AD Password Protection Proxy and Application Proxy install different versions of the Microsoft Azure AD Connect Agent Updater service. These different versions are incompatible when installed side by side, so it is not recommended to install Azure AD Password Protection Proxy and Application Proxy side by side on the same machine.
 
-2.  What is the failover process for components that operate in the active/passive mode?
+        - Backup domain controller
+  
+            - In order to increase availability of resources and authentication located on-premises, it is recommended to also add a backup domain controller within the hybrid infrastructure.  This backup domain controller could be a virtual machine in Azure or a physical server on-premises as long as it is able to communicate directly with the primary domain controller.  
+            - This backup domain controller will have Azure AD Connect installed and configured in standby mode and can be made primary if the main domain controller goes offline.
+            - The backup domain controller can also have a pass through authenticator agent installed for redundancy and also configured with the application proxy configuration to maintain resiliency for application access.
+
+1.  What is the failover process for components that operate in the active/passive mode?
 
    - Network connectivity between Active Directory and Azure Active Directory
 
@@ -363,6 +365,11 @@ It is important to provision sufficient number of connectors to handle the expec
         One of the prerequisites for implementing Hybrid Azure AD joined Key Trust Deployment of Windows Hello for Business is registration of Windows 10 client devices in Azure Active Directory. In the proposed solution, this is performed by leveraging the functionality of Azure AD Connect, which starting with version 1.1.819.0, includes a wizard that significantly simplifies the registration process. The wizard configures the Active Directory service connection points (SCPs) for device registration.
 
         For the information regarding other prerequisites and the process of implementing Hybrid Azure AD joined Key Trust Deployment of Windows Hello for Business, refer to *Hybrid Azure AD joined Key Trust Deployment* at <https://docs.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/hello-hybrid-key-trust>.
+
+    - Microsoft Authenticator authentication
+
+      - For users that do not have the capability to use Windows Hello for Business, the Microsoft Authenticator can be used for an additional layer of password-less security.
+      
 
 *Optimizing authorization configuration*
 
@@ -481,7 +488,7 @@ It is important to provision sufficient number of connectors to handle the expec
 
     - Rich client apps that are integrated with the Active Directory Authentication Library (ADAL)
  
-## Customer quote
+## Customer quote 
 
 "Azure AD offers a wide range of new opportunities that will allow us to extend our identity and access management far beyond our existing on-premises Active Directory environment, facilitating support for our remote users and providing secure and easy to manage integration platform for our business partners and customers."
 
