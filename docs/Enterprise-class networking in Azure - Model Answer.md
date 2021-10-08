@@ -13,19 +13,19 @@ lab:
 
 The solution for Woodgrove involved several technologies, including:
 
--   ExpressRoute with private and Microsoft peering enabled for connectivity for its virtual machines/Virtual Networks, and potential future plans for accessing Microsoft public services.
+-   ExpressRoute Global Reach with private and Microsoft peering enabled for connectivity for its virtual machines/Virtual Networks, and potential future plans for accessing Microsoft public services.
 
 -   Advanced networking, which allows certain instance sizes to hit 25 Gbps for accelerated networking scenarios.
 
 -   Testing the resiliency of the networking design. which involves taking a link down and ensuring services are still available.
 
--   Just-in-time (JIT) access for secure remote administration to a Jump box in Azure (this Jump box could be deallocated to reduce costs until required).
+-   Azure Bastion service for secure remote administration with Just-in-time (JIT) virtual machine access for RDP port security.
 
 -   Implementing an enterprise-class configuration within an Azure Virtual Network to support the 3-tier core banking application. Components of this solution include:
 
     -   Multiple Virtual Networks
 
-    -   Six subnet designations, including gateway, perimeter, web tier, business tier, data tier, and management subnet.
+    -   Six subnet designations, including gateway, perimeter, web tier, business tier, data tier, and Bastion subnet.
 
     -   Azure Firewall configured to provide hybrid connectivity support and internal firewall capabilities internal to the Azure VNet and any paired VNets.
 
@@ -56,8 +56,7 @@ The solution for Woodgrove involved several technologies, including:
 -   Implementing Azure Firewall to make sure it protects and filters all the traffic coming into and going out from the Azure virtual network.
 
 
-    ![A diagram that depicts the network flow from two on-premises sites where the traffic flows through Equinix and Level 3 using VPN and ExpressRoute. Multiple virtual networks in Azure are connected via VPN peering.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/high-level-architecture.png "Preferred Solution")
-
+    ![image](https://user-images.githubusercontent.com/25365143/136540295-d9f11188-7d8b-4eba-8082-798c9f50f737.png)
 
 *Address the following customer requirements*
 
@@ -79,7 +78,7 @@ The solution for Woodgrove involved several technologies, including:
 
     After learning that, with ExpressRoute, PaaS services do not traverse the internet, there was renewed interest in planning for PaaS adoption. These needs, in conjunction with connecting to private services (such as IaaS), dictate for the ExpressRoute circuits to be set up for private and Microsoft peering.
 
-    ![This image represents private and Microsoft peering for the ExpressRoute circuits.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image7.png)
+    !![image](https://user-images.githubusercontent.com/25365143/136540318-74dfba5f-6f00-4762-b7fa-1612bbe21205.png)
 
     Figure 2 - Peering for ExpressRoute
 
@@ -93,9 +92,9 @@ The solution for Woodgrove involved several technologies, including:
 
     Addresses from the two subnets will be used to establish two private peering for redundancy.
 
-    ![The Link 1 table lists two IP addresses for Customer/Provider use, and Microsoft use: 10.0.5.1/30, and 10.0.5.2/30.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image8.png "Link 1 table")
+    ![image](https://user-images.githubusercontent.com/25365143/136540345-fcea7a93-206e-45d7-9501-3f5fdc6d2812.png)
 
-    ![The Link 2 table lists two IP addresses for Customer/Provider use, and Microsoft use: 10.0.5.5/30, and 10.0.5.6/30.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image9.png "Link 2 table")
+    ![image](https://user-images.githubusercontent.com/25365143/136540358-03480b72-8528-49ff-86e9-ecd5f7ddfb0d.png)
 
     **Microsoft peering**
 
@@ -105,9 +104,9 @@ The solution for Woodgrove involved several technologies, including:
 
     -   72.191.44.4/30
 
-    ![This table lists the IP addresses and Autonomous System Numbers for Customer/Provider use and Microsoft use. IP Addresses are 72.191.44.1/30, and 72.191.44.2/30. ](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image10.png "Link 1 table")
+    ![image](https://user-images.githubusercontent.com/25365143/136540381-7434d76b-f386-4936-a903-25d79138a03c.png)
 
-    ![This table lists the IP addresses and Autonomous System Numbers for Customer/Provider use and Microsoft use. IP Addresses are now 72.191.44.5/30, and 72.191.44.6/30.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image11.png "Link 2 table")
+    ![image](https://user-images.githubusercontent.com/25365143/136540399-c60d900a-c65f-4d8d-876c-0d65b49fc7dc.png)
 
     **ExpressRoute connectivity type for Chicago**
 
@@ -116,7 +115,7 @@ The solution for Woodgrove involved several technologies, including:
     -   Create an ExpressRoute circuit by using the following command:
 
     ```
-        New-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>> -Location <<location>> -SkuTier <<sku-tier>> `
+        New-AzExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>> -Location <<location>> -SkuTier <<sku-tier>> `
 
     > -SkuFamily <<sku-family>> -ServiceProviderName <<service-provider-name>> -PeeringLocation <<peering-location>> -BandwidthInMbps <<bandwidth-in-mbps>>
     ```
@@ -126,7 +125,7 @@ The solution for Woodgrove involved several technologies, including:
     -   Wait for the provider to provision the circuit. You can verify the provisioning state of a circuit by using the following PowerShell command:
 
     ```
-    Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
+    Get-AzExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
     ```
 
     -   Reserve two /30 subnets for each peering type desired (private or public for private peering and public for Microsoft peering). These /30 subnets will be used to provide IP addresses for the routers used for the circuit.
@@ -134,9 +133,9 @@ The solution for Woodgrove involved several technologies, including:
     -   Configure routing for the ExpressRoute circuit. You need to run the command below for each type of peering you want to configure (private and Microsoft).
 
     ```
-    Set-AzureRmExpressRouteCircuitPeeringConfig -Name <<peering-name -Circuit <<circuit-name -PeeringType <<peering-type -PeerASN <<peer-asn -PrimaryPeerAddressPrefix <<primary-peer-address-prefix -SecondaryPeerAddressPrefix <<secondary-peer-address-prefix -VlanId <<vlan-id
+    Set-AzExpressRouteCircuitPeeringConfig -Name <<peering-name -Circuit <<circuit-name -PeeringType <<peering-type -PeerASN <<peer-asn -PrimaryPeerAddressPrefix <<primary-peer-address-prefix -SecondaryPeerAddressPrefix <<secondary-peer-address-prefix -VlanId <<vlan-id
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit <<circuit-name>>
+    Set-AzExpressRouteCircuit -ExpressRouteCircuit <<circuit-name>>
     ```
 
     -   Reserve another pool of valid Public IP addresses to use for NAT for Microsoft peering. Specify the pool to your connectivity provider, so they can configure BGP advertisements for those ranges.
@@ -144,11 +143,11 @@ The solution for Woodgrove involved several technologies, including:
     -   Link your private VNet(s) in the cloud to the ExpressRoute circuit. Use the following PowerShell commands:
 
     ```
-    $circuit = Get-AzureRmExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group
+    $circuit = Get-AzExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group
 
-    $gw = Get-AzureRmVirtualNetworkGateway -Name <<gateway-name -ResourceGroupName <<resource-group>>
+    $gw = Get-AzVirtualNetworkGateway -Name <<gateway-name -ResourceGroupName <<resource-group>>
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name <<connection-name -ResourceGroupName <<resource-group -Location <<location>> -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
+    New-AzVirtualNetworkGatewayConnection -Name <<connection-name -ResourceGroupName <<resource-group -Location <<location>> -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
     ```
 
     Because Woodgrove is using a layer 2 connection in Chicago, they deployed redundant routers in the datacenter in an active-active configuration. They connected the primary connection to one router and the secondary connection to the other. It provided a highly available connectivity at both ends of the connection. It is necessary to realize the ExpressRoute SLA.
@@ -160,7 +159,7 @@ The solution for Woodgrove involved several technologies, including:
     -   Create an ExpressRoute circuit by using the following command:
 
     ```
-    New-AzureRmExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group -Location <<location -SkuTier <<sku-tier `
+    New-AzExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group -Location <<location -SkuTier <<sku-tier `
     -SkuFamily <<sku-family -ServiceProviderName <<service-provider-name -PeeringLocation <<peering-location -BandwidthInMbps <<bandwidth-in-mbps>>
     ```
 
@@ -169,24 +168,24 @@ The solution for Woodgrove involved several technologies, including:
     -   Wait for the provider to provision the circuit. You can verify the provisioning state of a circuit by using the following PowerShell command:
 
     ```
-    Get-AzureRmExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group>>
+    Get-AzExpressRouteCircuit -Name <<circuit-name -ResourceGroupName <<resource-group>>
     ```
 
     -   Link your private VNet(s) in the cloud to the ExpressRoute circuit. Use the following PowerShell commands:
 
     ```
-    $circuit = Get-AzureRmExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
+    $circuit = Get-AzExpressRouteCircuit -Name <<circuit-name>> -ResourceGroupName <<resource-group>>
 
-    $gw = Get-AzureRmVirtualNetworkGateway -Name <<gateway-name>> -ResourceGroupName <<resource-group>>
+    $gw = Get-AzVirtualNetworkGateway -Name <<gateway-name>> -ResourceGroupName <<resource-group>>
 
-    New-AzureRmVirtualNetworkGatewayConnection -Name <<connection-name>> -ResourceGroupName <<resource-group>> -Location <<location> -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
+    New-AzVirtualNetworkGatewayConnection -Name <<connection-name>> -ResourceGroupName <<resource-group>> -Location <<location> -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
     ```
 
 3. What are the NAT requirements for ExpressRoute integration?
 
     The Microsoft peering path enables you to connect to all services hosted in Azure over their Public IP addresses. These services include all services listed in the ExpressRoute FAQ and any services hosted by ISVs on Microsoft Azure. The Microsoft peering also lets you connect to Office 365 services such as Exchange Online, SharePoint Online, Skype for Business, and to CRM Online. Microsoft supports bidirectional connectivity via Microsoft peering. Traffic destined to Microsoft cloud services must be SNATed to valid Public IPv4 or IPv6 addresses before they enter the Microsoft network.
 
-    ![The ExpressRoute diagram is made up of three boxes from left to right: Customer Network, Layer 2 Connectivity Provider, and Microsoft Cloud. Within the Customer Network box are user icons in the cloud, and two NAT boxes. The Layer 2 Connectivity provider box has the same Partner Edge box. Express Route connects The Layer 2 Connectivity Provder box wtih the Microsoft Cloud box, which includes Microsoft Edge and Micrsosoft Public Services.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image13.png "ExpressRoute")
+    ![image](https://user-images.githubusercontent.com/25365143/136540424-3f80ece3-7427-4bfe-98bb-ac15ecc0d2bc.png)
 
     Figure : Microsoft peering SNAT
 
@@ -194,7 +193,7 @@ The solution for Woodgrove involved several technologies, including:
 
     The following diagram shows a configuration with redundant on-premises routers connected to the primary and secondary circuits. Each circuit handles the traffic for a Microsoft peering and a private peering.
 
-    ![This diagram depicts redundant on-premises routers connected to he primary and secondary circuits. Each circuit is shown handling the traffic for a Microsoft peering and a private peering.](images/Whiteboarddesignsessiontrainerguide-Enterprise-classnetworkinginAzureimages/media/image14.png)
+    ![image](https://user-images.githubusercontent.com/25365143/136540441-38742ca4-5636-467f-bcd7-c683834d917a.png)
 
     Figure 4 - Redundancy and Peering with ExpressRoute
 
@@ -215,7 +214,7 @@ The solution for Woodgrove involved several technologies, including:
     10.10.1.32/27 (Business Tier)    |  Virtual Appliance  |  10.7.0.38
     10.10.1.64/27 (Data Tier)        |  Virtual Appliance  |  10.7.0.38
     10.7.255.224/27 (GatewaySubnet)  |  Virtual Appliance  |  10.7.0.38
-    10.7.0.0/27 (MGMT Subnet)        |  Virtual Appliance  |  10.7.0.38
+    10.7.0.0/27 (Bastion Subnet)        |  Virtual Appliance  |  10.7.0.38
 
     **Business tier subnet route table**
 
@@ -225,7 +224,7 @@ The solution for Woodgrove involved several technologies, including:
     10.10.1.64/27 (Data Tier)        |  Virtual Appliance  |  10.7.0.38
     10.10.1.0/27 (Web Tier)          |  Virtual Appliance  |  10.7.0.38
     10.7.255.224/27 (GatewaySubnet)  |  Virtual Appliance  |  10.7.0.38
-    10.7.0.0/27 (MGMT Subnet)        |  Virtual Appliance  |  10.7.0.38
+    10.7.0.0/27 (Bastion Subnet)        |  Virtual Appliance  |  10.7.0.38
 
     **Data tier subnet route table**
 
@@ -235,7 +234,7 @@ The solution for Woodgrove involved several technologies, including:
     10.10.1.32/27 (Business Tier)   |   Virtual Appliance |   10.7.0.38
     10.10.1.0/27 (Web Tier)         |   Virtual Appliance |   10.7.0.38
     10.7.255.224/27 (GatewaySubnet) |   Virtual Appliance |   10.7.0.38
-    10.7.0.0/27 (MGMT Subnet)       |   Virtual Appliance |   10.7.0.38
+    10.7.0.0/27 (Bastion Subnet)       |   Virtual Appliance |   10.7.0.38
 
 6. Identify where Network Security Groups are used in your design.
 
@@ -243,22 +242,22 @@ The solution for Woodgrove involved several technologies, including:
 
     **Perimeter NSG**
 
-    Traffic to manage the NSGs will only be allowed from the management subnet and from within the headquarters address range that represents the Woodgrove Financial Services NOC.
+    Traffic to manage the NSGs will only be allowed from the Bastion subnet and from within the headquarters address range that represents the Woodgrove Financial Services NOC.
 
     **Name**  |   **Priority** |   **Source**              |     **Protocol** |   **Source Port Range** |  **Destination**  |  **Dest. Port Range** |   **Action**
     ----------- | -------------- | --------------------------- | -------------- |  ----------------------- | ----------------- |  ---------------------- | ------------
-    MGMT1       | 100            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 807                    | Allow
-    MGMT2       | 110            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 801                    | Allow
+    Bastion1       | 100            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 807                    | Allow
+    Bastion2       | 110            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 801                    | Allow
     TINA\_VPN   | 200            | OnPrem PIP of VPN gateway   | Any            | Any                     | 10.7.0.32/27      | 691                    | Allow
     HTTP        | 300            | Any                         | TCP            | Any                     | 10.7.0.32/27      | 80                     | Allow
     SSH         | 400            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 22                     | Allow
-    MGMT3       | 500            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 807                    | Allow
-    MGMT4       | 510            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 801                    | Allow
-    MGMT4       | 520            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 22                     | Allow
+    Bastion3       | 500            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 807                    | Allow
+    Bastion4       | 510            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 801                    | Allow
+    Bastion5       | 520            | 10.7.0.0/27                 | TCP            | Any                     | 10.7.0.32/27      | 22                     | Allow
 
-    **Management NSG**
+    **Bastion NSG**
 
-    Only RDP traffic from the headquarters-based NOC will be allowed into the management subnet.
+    Only RDP traffic from the headquarters-based NOC will be allowed into the Bastion subnet.
 
     **Name**  |  **Priority**  |  **Source**   |  **Protocol**  |  **Source Port Range**  |  **Destination**  |  **Dest. Port Range**  |  **Action**
     ---------- | --------------|  ------------- | --------------|  ----------------------- | ----------------- | ---------------------- | ------------
@@ -317,9 +316,8 @@ The solution for Woodgrove involved several technologies, including:
     This can be addressed by enabling forced tunneling, which directs all outbound traffic to an on-premises location such as a security appliance. This is enabled in ExpressRoute by advertising a default BGP route.
 
 
-## Customer quote (to be read back to the attendees at the end)
+## Customer quote 
 
 Quote from the Network Director:
 
 "Azure's advanced networking capabilities and support for partner solutions are a welcome surprise. Your proof of concept has clearly demonstrated the platform's ability to more than satisfy our complex requirements."
-
